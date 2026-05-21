@@ -4,6 +4,9 @@ const WHATSAPP_NUMBER = "919033314485";
 const WHATSAPP_MSG = encodeURIComponent("Hello Kajal! I'd like to book a makeover appointment 💄");
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
 
+// GPS coordinates: 21°28'15.6"N 72°57'17.8"E
+const MAPS_LINK = "https://maps.google.com/?q=21°28'15.6%22N+72°57'17.8%22E";
+
 // ── SVG Icons ──────────────────────────────
 const IconBride = () => (
   <svg viewBox="0 0 64 64" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -22,10 +25,17 @@ const IconHair = () => (
     <path d="M18 38 Q32 32 46 38" />
   </svg>
 );
-const IconCare = () => (
+const IconFacial = () => (
   <svg viewBox="0 0 64 64" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <path d="M32 54 C32 54 10 40 10 24 C10 16 16 10 24 12 C28 13 32 18 32 18 C32 18 36 13 40 12 C48 10 54 16 54 24 C54 40 32 54 32 54Z" />
-    <path d="M24 28 L30 34 L42 22" strokeLinecap="round" />
+    <circle cx="32" cy="28" r="16" />
+    <path d="M24 26 Q26 22 28 26" strokeLinecap="round" />
+    <path d="M36 26 Q38 22 40 26" strokeLinecap="round" />
+    <path d="M26 34 Q32 40 38 34" strokeLinecap="round" />
+    <path d="M16 14 Q10 8 8 4" strokeLinecap="round" />
+    <path d="M48 14 Q54 8 56 4" strokeLinecap="round" />
+    <path d="M32 12 Q32 6 32 2" strokeLinecap="round" />
+    <circle cx="32" cy="52" r="3" />
+    <path d="M32 55 L32 60" strokeLinecap="round" />
   </svg>
 );
 
@@ -56,18 +66,35 @@ function InstagramIconSolid() {
   );
 }
 
+// ── 1. Updated SERVICES array ──────────────
 const SERVICES = [
-  { title: "Bridal Makeover", desc: "Timeless bridal looks crafted with precision — from traditional to contemporary, your dream look made real.", Icon: IconBride, tag: "Most Booked" },
-  { title: "Hair Styling", desc: "Blowouts, braids, updos, and salon treatments tailored to your hair type and the occasion.", Icon: IconHair, tag: "Trending" },
-  { title: "Personal Care", desc: "Facials, skin prep, threading, waxing, and full-body grooming rituals to keep you radiant.", Icon: IconCare, tag: "Everyday Glow" },
+  {
+    title: "Bridal Makeover",
+    desc: "Timeless bridal looks crafted with precision — from traditional to contemporary, your dream look made real.",
+    Icon: IconBride,
+    tag: "Most Booked",
+  },
+  {
+    title: "Hair Styling",
+    desc: "Blowouts, braids, updos, and salon treatments tailored to your hair type and the occasion.",
+    Icon: IconHair,
+    tag: "Trending",
+  },
+  {
+    title: "Hydra Facial & Skin Care",
+    desc: "Experience deep cleansing, hydration, and instant radiance with our signature HydraFacial ritual — a medical-grade treatment fused with luxury skincare to resurface, replenish, and protect your skin.",
+    Icon: IconFacial,
+    tag: "Glow Up",
+  },
 ];
 
+// ── 2. Updated GALLERY_IMGS with facial/skincare image ──
 const GALLERY_IMGS = [
   "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=80",
   "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80",
   "https://images.unsplash.com/photo-1503236823255-94609f598e71?w=600&q=80",
+  "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80", // facial / skincare treatment
   "https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=600&q=80",
-  "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80",
   "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=600&q=80",
 ];
 
@@ -97,6 +124,7 @@ function WhatsAppIcon() {
   );
 }
 
+// ── 3. Premium Mobile-First Navbar ──────────
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -112,10 +140,10 @@ function Navbar() {
   };
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"}`}>
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="text-rose-300 text-2xl">✦</span>
-          <span className="font-semibold tracking-widest text-lg" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#2C2C2C", letterSpacing: "0.12em" }}>
+          <span className="font-semibold tracking-widest text-base sm:text-lg" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#2C2C2C", letterSpacing: "0.12em" }}>
             KAJAL <span style={{ color: "#C9A96E" }}>MAKEOVER</span>
           </span>
         </div>
@@ -128,27 +156,53 @@ function Navbar() {
             </li>
           ))}
         </ul>
-        <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer" className="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs tracking-widest uppercase font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg" style={{ background: "#C9A96E", color: "#fff", fontFamily: "Jost, sans-serif", letterSpacing: "0.12em" }}>
+        <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer" className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs tracking-widest uppercase font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg" style={{ background: "#C9A96E", color: "#fff", fontFamily: "Jost, sans-serif", letterSpacing: "0.12em" }}>
           <WhatsAppIcon /> Book Now
         </a>
-        <button className="md:hidden p-2" onClick={() => setOpen(!open)} aria-label="menu">
-          <span className="block w-5 h-0.5 mb-1" style={{ background: "#2C2C2C" }} />
-          <span className="block w-5 h-0.5 mb-1" style={{ background: "#2C2C2C" }} />
-          <span className="block w-3 h-0.5" style={{ background: "#2C2C2C" }} />
+        {/* Mobile hamburger — larger touch target */}
+        <button
+          className="md:hidden p-3 -mr-1 rounded-xl transition-colors active:bg-rose-50"
+          onClick={() => setOpen(!open)}
+          aria-label="menu"
+        >
+          <span className="block w-5 h-0.5 mb-1.5 transition-all" style={{ background: "#2C2C2C", transform: open ? "rotate(45deg) translate(2px, 8px)" : "none" }} />
+          <span className="block w-5 h-0.5 mb-1.5 transition-all" style={{ background: "#2C2C2C", opacity: open ? 0 : 1 }} />
+          <span className="block w-3 h-0.5 transition-all" style={{ background: "#2C2C2C", transform: open ? "rotate(-45deg) translate(-2px, -8px)" : "none", width: open ? "1.25rem" : "0.75rem" }} />
         </button>
       </div>
-      <div className={`md:hidden overflow-hidden transition-all duration-300 bg-white/98 backdrop-blur-md ${open ? "max-h-72 border-t border-rose-100" : "max-h-0"}`}>
-        <ul className="flex flex-col px-6 py-4 gap-4">
+
+      {/* ── Mobile menu: glassmorphism ── */}
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-400 ${open ? "max-h-96" : "max-h-0"}`}
+        style={{
+          background: "rgba(255, 249, 249, 0.88)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          borderTop: open ? "1px solid rgba(232, 131, 154, 0.18)" : "none",
+          boxShadow: open ? "0 12px 40px rgba(201, 169, 110, 0.12)" : "none",
+        }}
+      >
+        <ul className="flex flex-col px-6 py-5 gap-1">
           {NAV_LINKS.map((l) => (
             <li key={l}>
-              <button onClick={() => scrollTo(l)} className="text-sm tracking-widest uppercase w-full text-left transition-colors hover:text-rose-400" style={{ fontFamily: "Jost, sans-serif", color: "#2C2C2C", letterSpacing: "0.15em" }}>
+              <button
+                onClick={() => scrollTo(l)}
+                className="text-sm tracking-widest uppercase w-full text-left py-3.5 px-2 rounded-xl transition-colors hover:bg-rose-50 active:bg-rose-100"
+                style={{ fontFamily: "Jost, sans-serif", color: "#2C2C2C", letterSpacing: "0.15em" }}
+              >
                 {l}
               </button>
             </li>
           ))}
-          <li>
-            <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs tracking-widest uppercase font-medium" style={{ background: "#C9A96E", color: "#fff", fontFamily: "Jost, sans-serif" }}>
-              <WhatsAppIcon /> Book Now
+          <li className="pt-3">
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2.5 w-full justify-center px-6 py-4 rounded-2xl text-sm tracking-widest uppercase font-medium shadow-md active:scale-95 transition-transform"
+              style={{ background: "#C9A96E", color: "#fff", fontFamily: "Jost, sans-serif" }}
+            >
+              <WhatsAppIcon /> Book via WhatsApp
             </a>
           </li>
         </ul>
@@ -166,23 +220,25 @@ function Hero() {
       </div>
       <div className="absolute left-0 top-0 w-px h-full opacity-20" style={{ background: "#C9A96E" }} />
       <div className="absolute right-0 top-0 w-px h-full opacity-20" style={{ background: "#C9A96E" }} />
-      <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
+      <div className="relative z-10 text-center px-6 sm:px-8 max-w-3xl mx-auto">
         <p className="text-xs tracking-[0.35em] uppercase mb-6" style={{ fontFamily: "Jost, sans-serif", color: "#C9A96E" }}>
           ✦ &nbsp; Hair &amp; Makeup Artist &nbsp; ✦
         </p>
-        <h1 className="mb-6 leading-none" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(3rem, 8vw, 7rem)", color: "#2C2C2C", fontWeight: 300 }}>
+        {/* Balanced mobile typography: clamp starts at 2.6rem instead of 3rem */}
+        <h1 className="mb-6 leading-none" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.6rem, 8vw, 7rem)", color: "#2C2C2C", fontWeight: 300 }}>
           Elevate<br />
           <em style={{ color: "#E8839A" }}>Your Beauty</em>
         </h1>
-        <p className="mb-10 leading-relaxed" style={{ fontFamily: "Jost, sans-serif", fontSize: "clamp(0.95rem, 2vw, 1.15rem)", color: "#8A7070", letterSpacing: "0.05em" }}>
+        <p className="mb-10 leading-relaxed px-2" style={{ fontFamily: "Jost, sans-serif", fontSize: "clamp(0.9rem, 2.2vw, 1.15rem)", color: "#8A7070", letterSpacing: "0.04em" }}>
           Premium Bridal Makeover, Hair Styling &amp; Cosmetics<br className="hidden sm:block" />
           — crafted for the woman who deserves the best.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-sm tracking-widest uppercase font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl" style={{ background: "#2C2C2C", color: "#fff", fontFamily: "Jost, sans-serif", letterSpacing: "0.15em" }}>
+          {/* Enlarged touch targets on mobile */}
+          <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-3 px-8 py-4 sm:py-4 rounded-full text-sm tracking-widest uppercase font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95" style={{ background: "#2C2C2C", color: "#fff", fontFamily: "Jost, sans-serif", letterSpacing: "0.15em", minHeight: "52px" }}>
             <WhatsAppIcon /> Book via WhatsApp
           </a>
-          <button onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })} className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm tracking-widest uppercase font-medium border transition-all duration-300 hover:bg-rose-50" style={{ borderColor: "#E8839A", color: "#E8839A", fontFamily: "Jost, sans-serif", letterSpacing: "0.15em" }}>
+          <button onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })} className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm tracking-widest uppercase font-medium border transition-all duration-300 hover:bg-rose-50 active:scale-95" style={{ borderColor: "#E8839A", color: "#E8839A", fontFamily: "Jost, sans-serif", letterSpacing: "0.15em", minHeight: "52px" }}>
             Explore Services
           </button>
         </div>
@@ -198,25 +254,40 @@ function Hero() {
 function Services() {
   const [ref, visible] = useFadeIn();
   return (
-    <section id="services" className="py-24 px-6" style={{ background: "#FFF9F9" }}>
+    <section id="services" className="py-20 sm:py-24 px-5 sm:px-6" style={{ background: "#FFF9F9" }}>
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <p className="text-xs tracking-[0.35em] uppercase mb-3" style={{ fontFamily: "Jost, sans-serif", color: "#C9A96E" }}>✦ &nbsp; What We Offer</p>
-          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.2rem, 5vw, 3.5rem)", fontWeight: 300, color: "#2C2C2C" }}>
+          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 300, color: "#2C2C2C" }}>
             Our <em style={{ color: "#E8839A" }}>Services</em>
           </h2>
           <div className="w-16 h-px mx-auto mt-6" style={{ background: "#C9A96E" }} />
         </div>
-        <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-8" style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(40px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}>
+        <div
+          ref={ref}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8"
+          style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(40px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}
+        >
           {SERVICES.map(({ title, desc, Icon, tag }, i) => (
-            <div key={title} className="group relative rounded-3xl p-8 flex flex-col items-start gap-5 border transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" style={{ background: "#fff", borderColor: "#F2B8C6", transitionDelay: `${i * 80}ms` }}>
+            <div
+              key={title}
+              className="group relative rounded-3xl p-7 sm:p-8 flex flex-col items-start gap-5 border transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl shadow-sm"
+              style={{ background: "#fff", borderColor: "#F2B8C6", transitionDelay: `${i * 80}ms`, boxShadow: "0 2px 16px rgba(232, 131, 154, 0.10)" }}
+            >
               <span className="absolute top-6 right-6 text-xs px-3 py-1 rounded-full tracking-widest" style={{ background: "#FFF0F5", color: "#E8839A", fontFamily: "Jost, sans-serif", fontSize: "0.65rem" }}>{tag}</span>
               <div className="flex items-center justify-center w-16 h-16 rounded-2xl transition-colors duration-300 group-hover:bg-rose-100" style={{ background: "#FFF0F5", color: "#E8839A" }}>
                 <Icon />
               </div>
-              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.55rem", fontWeight: 500, color: "#2C2C2C" }}>{title}</h3>
-              <p style={{ fontFamily: "Jost, sans-serif", color: "#8A7070", lineHeight: 1.7, fontSize: "0.92rem" }}>{desc}</p>
-              <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer" className="mt-auto text-xs tracking-widest uppercase font-medium flex items-center gap-2 transition-colors hover:text-rose-400" style={{ fontFamily: "Jost, sans-serif", color: "#C9A96E", letterSpacing: "0.15em" }}>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.5rem", fontWeight: 500, color: "#2C2C2C" }}>{title}</h3>
+              <p style={{ fontFamily: "Jost, sans-serif", color: "#8A7070", lineHeight: 1.75, fontSize: "0.91rem" }}>{desc}</p>
+              {/* Larger touch target for Book Now */}
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-auto text-xs tracking-widest uppercase font-medium flex items-center gap-2 transition-colors hover:text-rose-400 py-2"
+                style={{ fontFamily: "Jost, sans-serif", color: "#C9A96E", letterSpacing: "0.15em" }}
+              >
                 Book Now &nbsp;→
               </a>
             </div>
@@ -230,21 +301,21 @@ function Services() {
 function Gallery() {
   const [ref, visible] = useFadeIn(0.1);
   return (
-    <section id="gallery" className="py-24 px-6" style={{ background: "linear-gradient(180deg, #FFF0F5 0%, #FFF9F9 100%)" }}>
+    <section id="gallery" className="py-20 sm:py-24 px-5 sm:px-6" style={{ background: "linear-gradient(180deg, #FFF0F5 0%, #FFF9F9 100%)" }}>
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <p className="text-xs tracking-[0.35em] uppercase mb-3" style={{ fontFamily: "Jost, sans-serif", color: "#C9A96E" }}>✦ &nbsp; Instagram Portfolio</p>
-          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2.2rem, 5vw, 3.5rem)", fontWeight: 300, color: "#2C2C2C" }}>
+          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 300, color: "#2C2C2C" }}>
             Our <em style={{ color: "#E8839A" }}>Gallery</em>
           </h2>
           <div className="w-16 h-px mx-auto mt-6" style={{ background: "#C9A96E" }} />
         </div>
-        <div ref={ref} className="grid grid-cols-2 md:grid-cols-3 gap-4" style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(40px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}>
+        <div ref={ref} className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4" style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(40px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}>
           {GALLERY_IMGS.map((src, i) => (
-            <div key={i} className="group relative overflow-hidden rounded-2xl aspect-square">
+            <div key={i} className="group relative overflow-hidden rounded-2xl aspect-square shadow-sm">
               <img src={src} alt={`Portfolio ${i + 1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "rgba(242,184,198,0.55)", backdropFilter: "blur(2px)" }}>
-                <a href="https://instagram.com/kajal_rathod_98" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "#fff" }}>
+                <a href="https://instagram.com/kajal_rathod_98" target="_blank" rel="noreferrer" className="w-11 h-11 rounded-full flex items-center justify-center shadow-md" style={{ background: "#fff" }}>
                   <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#E8839A" strokeWidth="1.8">
                     <rect x="2" y="2" width="20" height="20" rx="5" />
                     <circle cx="12" cy="12" r="5" />
@@ -255,8 +326,8 @@ function Gallery() {
             </div>
           ))}
         </div>
-        <div className="text-center mt-12">
-          <a href="https://instagram.com/kajal_rathod_98" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-7 py-3 rounded-full text-sm tracking-widest uppercase border transition-all hover:bg-rose-50 hover:scale-105" style={{ borderColor: "#E8839A", color: "#E8839A", fontFamily: "Jost, sans-serif", letterSpacing: "0.15em" }}>
+        <div className="text-center mt-10 sm:mt-12">
+          <a href="https://instagram.com/kajal_rathod_98" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full text-sm tracking-widest uppercase border transition-all hover:bg-rose-50 hover:scale-105 active:scale-95" style={{ borderColor: "#E8839A", color: "#E8839A", fontFamily: "Jost, sans-serif", letterSpacing: "0.15em" }}>
             <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#E8839A" strokeWidth="1.8">
               <rect x="2" y="2" width="20" height="20" rx="5" />
               <circle cx="12" cy="12" r="5" />
@@ -270,7 +341,7 @@ function Gallery() {
   );
 }
 
-// ── Contact Info Items ─────────────────────
+// ── Contact Info Items — location now links to exact GPS coords ──
 const CONTACT_ITEMS = [
   {
     label: "Phone",
@@ -282,7 +353,7 @@ const CONTACT_ITEMS = [
   {
     label: "Location",
     value: "Near Main Chowk, Tarsadi, Kosamba, Gujarat – 394120",
-    href: null,
+    href: MAPS_LINK,        // ← exact GPS link
     icon: <LocationIcon />,
     accent: "#E8839A",
   },
@@ -301,7 +372,7 @@ function Footer() {
       {/* ── Top decorative band ── */}
       <div className="h-1 w-full" style={{ background: "linear-gradient(90deg, #C9A96E, #E8839A, #F2B8C6, #C9A96E)" }} />
 
-      <div className="max-w-6xl mx-auto px-6 pt-16 pb-10 grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 pt-14 sm:pt-16 pb-10 grid grid-cols-1 lg:grid-cols-3 gap-10 sm:gap-12">
 
         {/* ── Col 1 : Brand ── */}
         <div className="flex flex-col gap-5">
@@ -314,9 +385,13 @@ function Footer() {
           <p style={{ fontFamily: "Jost, sans-serif", color: "#9A8585", lineHeight: 1.8, fontSize: "0.88rem" }}>
             Premium hair &amp; makeup artistry for every occasion — because every woman deserves to feel extraordinary.
           </p>
-          <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer"
-            className="inline-flex items-center gap-2 w-fit px-5 py-2.5 rounded-full text-xs tracking-widest uppercase font-medium transition-all hover:opacity-90 hover:scale-105"
-            style={{ background: "#C9A96E", color: "#fff", fontFamily: "Jost, sans-serif", letterSpacing: "0.15em" }}>
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2.5 w-fit px-5 py-3 rounded-full text-xs tracking-widest uppercase font-medium transition-all hover:opacity-90 hover:scale-105 shadow-md active:scale-95"
+            style={{ background: "#C9A96E", color: "#fff", fontFamily: "Jost, sans-serif", letterSpacing: "0.15em", minHeight: "48px" }}
+          >
             <WhatsAppIcon /> Book Now
           </a>
         </div>
@@ -326,7 +401,7 @@ function Footer() {
           <h4 className="mb-6 text-xs tracking-[0.3em] uppercase" style={{ fontFamily: "Jost, sans-serif", color: "#C9A96E" }}>
             Quick Links
           </h4>
-          <ul className="flex flex-col gap-3">
+          <ul className="flex flex-col gap-1">
             {NAV_LINKS.map((l) => (
               <li key={l} className="flex items-center gap-2">
                 <span style={{ color: "#C9A96E", fontSize: "0.5rem" }}>◆</span>
@@ -335,8 +410,9 @@ function Footer() {
                     if (l === "Home") window.scrollTo({ top: 0, behavior: "smooth" });
                     else document.getElementById(l.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className="text-sm transition-colors hover:text-white"
-                  style={{ fontFamily: "Jost, sans-serif", color: "#9A8585", letterSpacing: "0.05em" }}>
+                  className="text-sm py-2.5 transition-colors hover:text-white"
+                  style={{ fontFamily: "Jost, sans-serif", color: "#9A8585", letterSpacing: "0.05em" }}
+                >
                   {l}
                 </button>
               </li>
@@ -365,10 +441,15 @@ function Footer() {
                     style={{ fontFamily: "Jost, sans-serif", color: "#C9A96E", fontSize: "0.62rem" }}>
                     {label}
                   </p>
+                  {/* Location now opens exact GPS coordinates in Google Maps */}
                   {href ? (
-                    <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer"
                       className="text-sm leading-relaxed transition-colors hover:text-white"
-                      style={{ fontFamily: "Jost, sans-serif", color: "#C4AFAF" }}>
+                      style={{ fontFamily: "Jost, sans-serif", color: "#C4AFAF" }}
+                    >
                       {value}
                     </a>
                   ) : (
@@ -384,12 +465,12 @@ function Footer() {
       </div>
 
       {/* ── Divider ── */}
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6">
         <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent, #3D3030, transparent)" }} />
       </div>
 
       {/* ── Bottom bar ── */}
-      <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
         <p className="text-xs tracking-widest" style={{ fontFamily: "Jost, sans-serif", color: "#5A4A4A", letterSpacing: "0.1em" }}>
           © {new Date().getFullYear()} Kajal Makeover. All rights reserved.
         </p>
