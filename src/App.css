@@ -1,211 +1,307 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap');
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+.km-root {
+  font-family: 'Jost', sans-serif;
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+.km-bg-dark {
+  background-color: #0A0A0A;
 }
 
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+.km-bg-gold {
+  background-color: #C9A96E;
 }
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
+.km-text-gold {
+  color: #C9A96E;
 }
 
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
+.km-text-rose {
+  color: #E8839A;
 }
 
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
+.km-brand-logo {
+  font-family: 'Cormorant Garamond', serif;
+  color: #F9FAFB;
+  letter-spacing: 0.12em;
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+.km-nav-item {
+  font-family: 'Jost', sans-serif;
+  color: #D1D5DB;
+  letter-spacing: 0.15em;
 }
 
-.ticks {
-  position: relative;
-  width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
+.km-nav-phone {
+  font-family: 'Jost', sans-serif;
+  color: #D1D5DB;
+  letter-spacing: 0.05em;
 }
 
-/* App.css */
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  background: #111111;
+.km-btn-gold {
+  background-color: #C9A96E;
   color: #ffffff;
-  overflow-x: hidden;
+  font-family: 'Jost', sans-serif;
+  letter-spacing: 0.12em;
 }
 
-* {
-  box-sizing: border-box;
+.km-burger-line {
+  background-color: #F9FAFB;
 }
 
-img {
-  max-width: 100%;
-  display: block;
+.km-burger-line.is-open-top {
+  transform: rotate(45deg) translate(2px, 8px);
 }
 
-a {
-  text-decoration: none;
+.km-burger-line.is-open-mid {
+  opacity: 0;
+}
+
+.km-burger-line-bottom {
+  background-color: #F9FAFB;
+  width: 0.75rem;
+}
+
+.km-burger-line-bottom.is-open-bot {
+  width: 1.25rem;
+  transform: rotate(-45deg) translate(-2px, -8px);
+}
+
+.km-mobile-drawer {
+  background: rgba(24, 24, 27, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.km-mobile-drawer.is-open {
+  border-top: 1px solid rgba(232, 131, 154, 0.18);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.km-hero-gradient {
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.8) 60%, #0A0A0A 100%);
+}
+
+.km-hero-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 10vw, 7rem);
+  color: #F9FAFB;
+  font-weight: 300;
+}
+
+.km-hero-subtext {
+  font-family: 'Jost', sans-serif;
+  font-size: clamp(0.85rem, 2.2vw, 1.15rem);
+  color: #A1A1AA;
+  letter-spacing: 0.04em;
+}
+
+.km-btn-primary {
+  background-color: #C9A96E;
+  color: #0A0A0A;
+  font-family: 'Jost', sans-serif;
+  letter-spacing: 0.12em;
+  min-height: 48px;
+}
+
+.km-btn-outline {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #F9FAFB;
+  font-family: 'Jost', sans-serif;
+  letter-spacing: 0.12em;
+  min-height: 48px;
+}
+
+.km-hero-tel {
+  font-family: 'Jost', sans-serif;
+  color: #C4AFAF;
+  letter-spacing: 0.05em;
+}
+
+.km-scroll-label {
+  font-family: 'Jost', sans-serif;
+  color: #8A7070;
+}
+
+.km-section-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  color: #F9FAFB;
+}
+
+.km-fade-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.km-fade-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.km-service-card {
+  background-color: #18181B;
+  border-color: #E8839A;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.km-service-badge {
+  background-color: #2A1F22;
+  color: #E8839A;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.65rem;
+}
+
+.km-service-icon-box {
+  background-color: #2A1F22;
+  color: #E8839A;
+}
+
+.km-service-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #F9FAFB;
+}
+
+.km-service-desc {
+  font-family: 'Jost', sans-serif;
+  color: #A1A1AA;
+  line-height: 1.75;
+  font-size: 0.91rem;
+}
+
+.km-service-link {
+  font-family: 'Jost', sans-serif;
+  color: #C9A96E;
+  letter-spacing: 0.15em;
+}
+
+.km-gallery-section {
+  background: linear-gradient(180deg, #1A1516 0%, #0A0A0A 100%);
+}
+
+.km-gallery-hover {
+  background: rgba(242, 184, 198, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.km-btn-rose-outline {
+  border-color: #E8839A;
+  color: #E8839A;
+  font-family: 'Jost', sans-serif;
+  letter-spacing: 0.15em;
+}
+
+.km-booking-sub {
+  font-family: 'Jost', sans-serif;
+  color: #A1A1AA;
+  font-size: 0.95rem;
+}
+
+.km-booking-phone {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.9rem, 7vw, 3.2rem);
+  color: #C9A96E;
+  letter-spacing: 0.04em;
+}
+
+.km-btn-rose-save {
+  border-color: #E8839A;
+  color: #E8839A;
+  font-family: 'Jost', sans-serif;
+  letter-spacing: 0.12em;
+  min-height: 48px;
+}
+
+.km-booking-note {
+  background-color: #18181B;
+  border: 1px solid rgba(201, 169, 110, 0.35);
+}
+
+.km-note-title {
+  font-family: 'Jost', sans-serif;
+  color: #F9FAFB;
+}
+
+.km-note-desc {
+  font-family: 'Jost', sans-serif;
+  color: #A1A1AA;
+  line-height: 1.75;
+  font-size: 0.88rem;
+}
+
+.km-footer {
+  background-color: #1E1A1A;
+}
+
+.km-footer-band {
+  background: linear-gradient(90deg, #C9A96E, #E8839A, #F2B8C6, #C9A96E);
+}
+
+.km-footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  font-weight: 300;
+}
+
+.km-footer-bio {
+  font-family: 'Jost', sans-serif;
+  color: #9A8585;
+  line-height: 1.8;
+  font-size: 0.88rem;
+}
+
+.km-btn-footer-gold {
+  background-color: #C9A96E;
+  color: #ffffff;
+  font-family: 'Jost', sans-serif;
+  letter-spacing: 0.15em;
+  min-height: 48px;
+}
+
+.km-btn-footer-rose {
+  border-color: #E8839A;
+  color: #E8839A;
+  font-family: 'Jost', sans-serif;
+  letter-spacing: 0.15em;
+  min-height: 48px;
+}
+
+.km-footer-nav-btn {
+  font-family: 'Jost', sans-serif;
+  color: #9A8585;
+  letter-spacing: 0.05em;
+}
+
+.km-contact-bubble-gold {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  color: #C9A96E;
+}
+
+.km-contact-bubble-rose {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(232, 131, 154, 0.25);
+  color: #E8839A;
+}
+
+.km-contact-label {
+  font-family: 'Jost', sans-serif;
+  color: #C9A96E;
+  font-size: 0.62rem;
+}
+
+.km-footer-divider {
+  background: linear-gradient(90deg, transparent, #3D3030, transparent);
+}
+
+.km-footer-copy {
+  font-family: 'Jost', sans-serif;
+  color: #5A4A4A;
+  letter-spacing: 0.1em;
 }
